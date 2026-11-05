@@ -1,0 +1,13 @@
+{
+  "name": "Aula Libre — aprende donde estés",
+  "short_name": "Aula Libre",
+  "description": "Aprende, enseña y guarda tus avances incluso sin conexión.",
+  "lang": "es",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f7f2",
+  "theme_color": "#f6f7f2",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

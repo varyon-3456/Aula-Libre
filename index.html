@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f2">
+    <meta name="description" content="Aula Libre: aprende, enseña y guarda tus avances incluso sin conexión.">
+    <title>Aula Libre — aprende donde estés</title>
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
+      <div class="auth-card">
+        <a class="brand auth-brand" href="#" aria-label="Aula Libre">
+          <span class="brand-mark" aria-hidden="true">a</span>
+          <span>aula libre<span class="brand-period">.</span></span>
+        </a>
+        <p class="eyebrow">TU ESPACIO DE APRENDIZAJE</p>
+        <h1 id="auth-title">Inicia sesión</h1>
+        <p class="intro" id="auth-description">Entra sin Internet para ver tu nombre y continuar tu aprendizaje en este dispositivo.</p>
+        <p class="auth-local-note">Las cuentas y los avances se guardan en este dispositivo. No necesitas conexión.</p>
+        <form id="auth-form">
+          <label for="auth-name" id="auth-name-label" class="hidden">Nombre completo</label>
+          <input id="auth-name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Nombre completo" class="hidden">
+          <label for="auth-username">Usuario</label>
+          <input id="auth-username" name="username" type="text" autocomplete="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9._\-]+" required>
+          <label for="auth-password">Contraseña</label>
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required>
+          <p class="auth-error" id="auth-error" role="alert" aria-live="polite"></p>
+          <button class="button button-green auth-submit" id="auth-submit" type="submit">Iniciar sesión</button>
+        </form>
+        <button class="auth-switch" id="auth-switch" type="button">¿No tienes cuenta? Crear cuenta</button>
+      </div>
+    </section>
+    <div class="app-shell hidden" id="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <a class="brand" href="#" aria-label="Aula Libre, inicio" data-view="inicio">
+          <span class="brand-mark" aria-hidden="true">a</span>
+          <span>aula libre<span class="brand-period">.</span></span>
+        </a>
+        <div class="school-label">AULA COMUNITARIA</div>
+        <nav class="main-nav">
+          <button class="nav-link active" data-view="inicio"><span aria-hidden="true">⌂</span> Mi aprendizaje</button>
+          <button class="nav-link" data-view="biblioteca"><span aria-hidden="true">▤</span> Biblioteca</button>
+          <button class="nav-link" data-view="progreso"><span aria-hidden="true">↗</span> Mi progreso</button>
+          <button class="nav-link" data-view="docente" hidden><span aria-hidden="true">◎</span> Espacio docente</button>
+          <button class="nav-link" data-view="mensajes"><span aria-hidden="true">✉</span> Mensajes</button>
+          <button class="nav-link" data-view="proyecto"><span aria-hidden="true">◈</span> El proyecto</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="offline-card">
+            <span class="offline-icon" aria-hidden="true">⌁</span>
+            <div><strong>Aprende sin señal</strong><p>Tus lecciones están aquí, contigo.</p></div>
+          </div>
+          <div class="profile">
+            <div class="avatar" id="profile-avatar">AL</div>
+            <div><strong id="profile-name">Alumno</strong><span>Estudiante</span></div>
+            <button class="profile-logout" id="logout-button" type="button">Salir</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumbs">Aula comunitaria <span>/</span> <strong id="breadcrumb-current">Mi aprendizaje</strong></div>
+          <div class="connection-pill" id="connection-status" role="status" aria-live="polite">
+            <span class="connection-dot"></span><span id="connection-label">Revisando conexión...</span>
+          </div>
+        </header>
+
+        <section id="home-view" class="view">
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow" id="today-date"></p>
+              <h1>¡Hola, <span id="welcome-name">estudiante</span>! <span class="wave" aria-hidden="true">✳</span></h1>
+              <p class="intro">Cada pequeño paso te acerca a algo grande.</p>
+            </div>
+            <div class="streak-card"><span aria-hidden="true">✦</span><div><strong id="streak-count">3 días</strong><small>de aprendizaje</small></div></div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-copy">
+              <span class="tag tag-light">TU SIGUIENTE PASO</span>
+              <p class="hero-subject">CIENCIA · 12 MIN</p>
+              <h2>El agua que<br>nos da vida</h2>
+              <p>Descubre el viaje de una gota y por qué cada una cuenta.</p>
+              <button class="button button-light" data-open-lesson="agua">Continuar aprendiendo <span aria-hidden="true">→</span></button>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div>
+              <div class="water-drop">⌄</div><div class="hero-label">CUIDEMOS<br>EL AGUA</div>
+            </div>
+            <div class="hero-decoration" aria-hidden="true">✳</div>
+          </div>
+
+          <div class="section-heading">
+            <div><p class="eyebrow">A TU RITMO</p><h2>Tu camino de hoy</h2></div>
+            <button class="text-button" data-view="biblioteca">Ver biblioteca <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="course-grid" id="course-grid"></div>
+          <div class="progress-list home-assignments"><h2>Tareas de mi docente</h2><div id="student-assignments"></div></div>
+
+          <div class="sync-banner">
+            <div class="sync-icon" aria-hidden="true">↻</div>
+            <div><strong id="sync-title">Tu aprendizaje está guardado</strong><p id="sync-description">El progreso queda guardado en este dispositivo y funciona sin Internet.</p></div>
+            <button class="button button-outline" id="sync-button">Guardar progreso</button>
+          </div>
+        </section>
+
+        <section id="library-view" class="view hidden">
+          <div class="page-heading"><p class="eyebrow">CONTENIDO PARA EXPLORAR</p><h1>Tu biblioteca</h1><p class="intro" id="library-summary">Lecciones ligeras, listas para aprender con o sin conexión.</p></div>
+          <div class="library-note"><span aria-hidden="true">⌁</span><span><strong>Aprende sin conexión.</strong> Los cursos ya vienen incluidos. Guarda la aplicación en este dispositivo antes de usarla sin Internet.</span><button class="button button-outline" id="download-library">Guardar aplicación</button></div>
+          <div class="media-note"><strong>Materiales incluidos</strong><span>Lecturas y actividades interactivas disponibles sin conexión.</span><span>Las ilustraciones son ligeras; puedes escuchar cada lectura con la voz del dispositivo o imprimirla/guardarla como PDF.</span><span class="muted-note">No se incluyen archivos de audio o video externos en este prototipo.</span></div>
+          <div class="course-grid library-grid" id="library-grid"></div>
+        </section>
+
+        <section id="progress-view" class="view hidden">
+          <div class="page-heading"><p class="eyebrow">CADA PASO CUENTA</p><h1>Tu progreso</h1><p class="intro">Lo que aprendes queda guardado en este dispositivo.</p></div>
+          <div class="progress-overview">
+            <article class="stat-card"><span>CURSOS COMPLETADOS</span><strong id="completed-stat">0</strong><small>vas avanzando</small></article>
+            <article class="stat-card"><span>RACHA ACTUAL</span><strong id="streak-stat">3 <i>días</i></strong><small>¡sigue así!</small></article>
+            <article class="stat-card"><span>PROGRESO TOTAL</span><strong id="total-stat">0%</strong><small>de tu camino</small></article>
+          </div>
+          <div class="progress-list"><h2>Tu camino de aprendizaje</h2><div id="progress-items"></div></div>
+          <div class="progress-list grade-list"><h2>Comentarios y calificaciones docentes</h2><div id="grade-items"></div></div>
+          <div class="sync-banner"><div class="sync-icon" aria-hidden="true">✓</div><div><strong>Progreso guardado en este dispositivo</strong><p id="progress-sync-description">Tu avance se guarda aquí y no necesita Internet.</p></div><button class="button button-outline" id="progress-sync-button">Guardar ahora</button></div>
+        </section>
+
+        <section id="teacher-view" class="view hidden">
+          <div class="page-heading"><p class="eyebrow">HERRAMIENTAS PARA ACOMPAÑAR</p><h1>Espacio docente</h1><p class="intro">Asigna actividades y revisa el avance disponible en este dispositivo.</p></div>
+          <div class="demo-notice"><strong>Espacio local.</strong> Las tareas y calificaciones se guardan solo en este dispositivo; no se comparten con otros alumnos.</div>
+          <div class="teacher-grid">
+            <form class="panel-card" id="assignment-form">
+              <p class="eyebrow">NUEVA ACTIVIDAD</p><h2>Asignar una tarea</h2>
+              <label for="assignment-course">Curso</label><select id="assignment-course" required></select>
+              <label for="assignment-due">Fecha de entrega</label><input id="assignment-due" type="date">
+              <label for="assignment-instructions">Indicaciones</label><textarea id="assignment-instructions" rows="3" maxlength="300" placeholder="Ej.: Lee la lección y responde el cuestionario." required></textarea>
+              <button class="button button-green" type="submit">Guardar asignación</button>
+            </form>
+            <div class="panel-card"><p class="eyebrow">SEGUIMIENTO</p><h2 id="teacher-progress-title">Progreso del estudiante</h2><div id="teacher-progress"></div></div>
+          </div>
+          <div class="progress-list"><h2>Actividades asignadas</h2><div id="assignment-list"></div></div>
+          <form class="panel-card feedback-form" id="feedback-form">
+            <p class="eyebrow">RETROALIMENTACIÓN</p><h2>Dejar una calificación y comentario</h2>
+            <label for="feedback-course">Actividad</label><select id="feedback-course" required></select>
+            <label for="feedback-grade">Calificación (0–20)</label><input id="feedback-grade" type="number" min="0" max="20" step="1" required>
+            <label for="feedback-comment">Comentario para el estudiante</label><textarea id="feedback-comment" rows="3" maxlength="300" placeholder="Escribe una observación útil." required></textarea>
+            <button class="button button-green" type="submit">Guardar comentario</button>
+          </form>
+        </section>
+
+        <section id="messages-view" class="view hidden">
+          <div class="page-heading"><p class="eyebrow">COMUNICACIÓN QUE NO SE PIERDE</p><h1>Mensajes del aula</h1><p class="intro">Escribe y guarda mensajes en este dispositivo, sin necesitar Internet.</p></div>
+          <div class="demo-notice"><strong>Buzón local.</strong> Tus mensajes se guardan en este dispositivo y no requieren Internet.</div>
+          <form class="panel-card message-form" id="message-form">
+            <label for="message-sender">Enviar como</label><input id="message-sender" value="Estudiante" readonly>
+            <label for="message-text">Mensaje</label><textarea id="message-text" rows="3" maxlength="500" placeholder="Escribe una pregunta, aviso o comentario…" required></textarea>
+            <button class="button button-green" type="submit">Guardar mensaje</button>
+          </form>
+          <div class="progress-list"><h2>Bandeja del dispositivo</h2><div id="message-list"></div></div>
+        </section>
+
+        <section id="project-view" class="view hidden">
+          <div class="project-hero"><p class="eyebrow">RETO 02 · APRENDER SIN CONEXIÓN</p><h1>Aprender no debería depender de Internet.</h1><p>Una plataforma educativa offline-first para que estudiantes y docentes continúen aprendiendo cuando la señal falla y sin gastar datos innecesarios. El prototipo incluye 9 cursos y 27 retos para practicar.</p></div>
+          <div class="project-section"><p class="eyebrow">EL DESAFÍO</p><h2>Una conexión intermitente no debe interrumpir una oportunidad.</h2><div class="project-grid"><article class="project-card"><strong>Conexión inestable</strong><p>Las clases y plataformas se detienen cuando la señal falla o desaparece.</p></article><article class="project-card"><strong>Costo de los datos</strong><p>Descargar videos, documentos y tareas puede consumir recursos de las familias.</p></article><article class="project-card"><strong>Brecha educativa</strong><p>Estudiantes de zonas rurales o alejadas pueden tener menos oportunidades digitales.</p></article></div></div>
+          <div class="project-section"><p class="eyebrow">LA PROPUESTA · AULA LIBRE</p><h2>Primero el dispositivo; la nube complementa, no bloquea.</h2><div class="project-grid feature-grid"><article class="project-card"><strong>01 · Contenidos offline</strong><p>Biblioteca descargable de cursos y lecturas; materiales ligeros con PDF, ilustraciones, audio y video cuando estén disponibles.</p></article><article class="project-card"><strong>02 · Actividades interactivas</strong><p>Preguntas, prácticas, retos y autoevaluaciones que funcionan localmente.</p></article><article class="project-card"><strong>03 · Progreso personal</strong><p>Respuestas, notas, resultados y objetivos completados se guardan en el dispositivo.</p></article><article class="project-card"><strong>04 · Espacio docente</strong><p>Asignación de tareas, revisión de entregas y comentarios para acompañar el aprendizaje.</p></article><article class="project-card"><strong>05 · Mensajes diferidos</strong><p>Avisos y comentarios quedan en una cola local y se envían al sincronizar.</p></article><article class="project-card"><strong>06 · Ayuda local opcional</strong><p>Un tutor guiado usa los contenidos del curso sin enviar preguntas a servicios externos. La demo no incluye un modelo generativo.</p></article></div></div>
+          <div class="project-section"><p class="eyebrow">CÓMO FUNCIONA</p><h2>Cuatro pasos para seguir aprendiendo.</h2><div class="workflow-grid"><article><span>1</span><strong>Descargar</strong><p>La escuela conecta el dispositivo y prepara cursos y actividades.</p></article><article><span>2</span><strong>Aprender</strong><p>El estudiante lee y resuelve actividades sin Internet.</p></article><article><span>3</span><strong>Guardar</strong><p>Respuestas, notas y avances se almacenan localmente.</p></article><article><span>4</span><strong>Sincronizar</strong><p>Al volver la red, se envían y reciben cambios pendientes; el servidor debe deduplicar entregas y resolver conflictos.</p></article></div></div>
+          <div class="project-section"><p class="eyebrow">DISEÑO TECNOLÓGICO</p><h2>Arquitectura local</h2><div class="architecture"><article><strong>APP MÓVIL / WEB</strong><span>Aplicación instalada · PWA</span></article><b aria-hidden="true">→</b><article><strong>ALMACENAMIENTO LOCAL</strong><span>Cuentas y progreso separados en cada dispositivo</span></article></div><p class="architecture-note">Los cursos, las cuentas y los avances se guardan en el dispositivo. No hay servidor ni sincronización entre equipos; cada alumno debe crear su cuenta en el dispositivo que utilizará.</p></div>
+          <div class="project-section"><p class="eyebrow">IMPACTO ESPERADO</p><h2>Beneficios para toda la comunidad.</h2><div class="project-grid"><article class="project-card"><strong>Para estudiantes</strong><p>Acceso flexible, práctica autónoma y seguimiento de sus propios avances.</p></article><article class="project-card"><strong>Para docentes</strong><p>Mejor visibilidad del progreso y herramientas para acompañar el aprendizaje.</p></article><article class="project-card"><strong>Para comunidades</strong><p>Menor dependencia de datos móviles y más oportunidades de inclusión digital.</p></article></div><h3 class="indicator-title">Indicadores para evaluar el piloto</h3><div class="indicator-list"><span>Porcentaje de actividades completadas sin conexión</span><span>Cantidad de estudiantes activos y cursos consultados</span><span>Tiempo promedio de sincronización y errores detectados</span><span>Mejora en resultados antes y después de usar la plataforma</span></div></div>
+          <div class="project-section implementation-section"><p class="eyebrow">IMPLEMENTACIÓN</p><h2>Empezar pequeño, crecer con la comunidad.</h2><ol><li><strong>Fase 1:</strong> diseñar un prototipo con cursos y evaluaciones básicas.</li><li><strong>Fase 2:</strong> probarlo en una escuela con conectividad limitada.</li><li><strong>Fase 3:</strong> medir resultados, mejorar la experiencia y ampliar contenidos.</li><li><strong>Fase 4:</strong> incorporar comunicación docente e IA local cuando sea viable.</li></ol><p class="closing-line">Aprender no debe esperar a tener señal.</p></div>
+        </section>
+
+        <section id="lesson-view" class="view hidden">
+          <button class="back-button" id="back-home"><span aria-hidden="true">←</span> Volver a mi aprendizaje</button>
+          <div id="lesson-content"></div>
+        </section>
+      </main>
+    </div>
+    <aside class="tutor-panel hidden" id="tutor-panel" aria-label="Tutor local">
+      <button class="tutor-toggle" id="tutor-toggle" aria-expanded="false">✦ Ayuda local</button>
+      <div class="tutor-content hidden" id="tutor-content">
+        <div><strong>Tutor local · demostración</strong><p>Respuestas guiadas con el contenido del curso. No usa un modelo generativo ni envía tus preguntas.</p></div>
+        <form id="tutor-form"><label class="sr-only" for="tutor-question">Pregunta al tutor local</label><input id="tutor-question" maxlength="240" placeholder="¿Qué quieres repasar?" required><button class="button button-green" type="submit">Preguntar</button></form>
+        <p id="tutor-answer" class="tutor-answer" aria-live="polite"></p>
+      </div>
+    </aside>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
